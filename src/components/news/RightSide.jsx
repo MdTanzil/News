@@ -1,4 +1,7 @@
 /* eslint-disable react/prop-types */
+
+import { humanizeDateTime } from "../../util";
+
 /* eslint-disable no-unused-vars */
 const RightSide = ({ data }) => {
   return (
@@ -19,13 +22,13 @@ const RightSide = ({ data }) => {
               </p>
               <p className="mt-5 text-base text-[#94908C]">
                 {" "}
-                {data[0].publishedAt}
+                {humanizeDateTime(data[0].publishedAt)}
               </p>
             </div>
           </div>
         )}
-        {data.slice(1).map((news) => (
-          <div className="col-span-12 md:col-span-8" key={news.id}>
+        {data.slice(1).map((news, idx) => (
+          <div className="col-span-12 md:col-span-8" key={idx}>
             {/* <!-- info --> */}
             <div className="col-span-12 md:col-span-4">
               <a href="#">
@@ -35,7 +38,7 @@ const RightSide = ({ data }) => {
               </a>
               <p className="text-base text-[#292219]">{news.description}</p>
               <p className="mt-5 text-base text-[#94908C]">
-                {news.publishedAt}
+                {humanizeDateTime(news.publishedAt)}
               </p>
             </div>
           </div>

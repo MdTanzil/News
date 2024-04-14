@@ -1,7 +1,22 @@
 import SearchIcon from "../assets/icons/search.svg";
 import Logo from "../assets/logo.png";
+import useDebounce from "../hooks/useDebounce";
+import useNewsQuery from "../hooks/useNewsQuery";
+import { formattedDate } from "../util";
 import NavItems from "./NavItems";
+
 const Header = () => {
+  const { setSearchText } = useNewsQuery();
+
+  // Define your debounced function
+  const delayedSearch = useDebounce((value) => {
+    setSearchText(value);
+  }, 1000);
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    delayedSearch(value);
+  };
   return (
     <nav className="border-b border-black py-6 md:py-8">
       <div className="container mx-auto flex flex-wrap items-center justify-between gap-6">
@@ -57,7 +72,7 @@ const Header = () => {
               strokeLinejoin="round"
             />
           </svg>
-          <span>Thursday, February 25, 2021</span>
+          <span>{formattedDate}</span>
         </div>
         {/* <!-- Logo --> */}
         <a href="/">
@@ -69,8 +84,15 @@ const Header = () => {
         </a>
         {/* <!-- Logo Ends --> */}
         {/* <!-- --> */}
-        <div className="flex items-center space-x-3 lg:space-x-8">
-          <img src={SearchIcon} />
+        <div className="flex  items-center space-x-3 lg:space-x-8">
+          <div className="relative flex">
+            <input
+              className="peer border-b border-gray-500 focus:border-[#2f3133] bg-transparent py-1 text-[#080808] focus:outline-none"
+              type="text"
+              onChange={handleSearch}
+            />
+          </div>
+          <img className="" src={SearchIcon} />
         </div>
       </div>
       {/* <!-- categories --> */}

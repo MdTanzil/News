@@ -1,10 +1,10 @@
-import useData from "../../hooks/useData";
+import useNewsQuery from "../../hooks/useNewsQuery";
 import { splitNews } from "../../util";
 import LeftSide from "./LeftSide";
 import RightSide from "./RightSide";
 
 const NewsFeed = () => {
-  const { data } = useData();
+  const { data } = useNewsQuery();
 
   const [leftData, rightData] = splitNews(data);
 

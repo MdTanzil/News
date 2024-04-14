@@ -1,3 +1,5 @@
+import { humanizeDateTime } from "../../util";
+
 /* eslint-disable react/prop-types */
 const LeftSide = ({ data }) => {
   // console.log(data);
@@ -14,7 +16,7 @@ const LeftSide = ({ data }) => {
             </a>
             <p className="text-base text-[#5C5955]">{data[1].description}</p>
             <p className="mt-5 text-base text-[#5C5955]">
-              {data[1].publishedAt}
+              {humanizeDateTime(data[1].publishedAt)}
             </p>
           </div>
           {/* <!-- thumb --> */}
@@ -37,7 +39,7 @@ const LeftSide = ({ data }) => {
             </a>
             <p className="text-base text-[#292219]">{data[0].description}</p>
             <p className="mt-5 text-base text-[#5C5955]">
-              {data[0].publishedAt}
+              {humanizeDateTime(data[0].publishedAt)}
             </p>
           </div>
           {/* <!-- thumb --> */}
@@ -46,8 +48,8 @@ const LeftSide = ({ data }) => {
           </div>
         </div>
       )}
-      {data.slice(2).map((item) => (
-        <div className="col-span-12 md:col-span-6 lg:col-span-4" key={item.id}>
+      {data.slice(2).map((item, idx) => (
+        <div className="col-span-12 md:col-span-6 lg:col-span-4" key={idx}>
           {/* <!-- info --> */}
           <div className="col-span-12 md:col-span-4">
             <a href="#">
@@ -56,7 +58,9 @@ const LeftSide = ({ data }) => {
               </h3>
             </a>
             <p className="text-base text-[#292219]">{item.description}</p>
-            <p className="mt-5 text-base text-[#94908C]">{item.publishedAt}</p>
+            <p className="mt-5 text-base text-[#94908C]">
+              {humanizeDateTime(item.publishedAt)}
+            </p>
           </div>
         </div>
       ))}

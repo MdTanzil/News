@@ -1,4 +1,4 @@
-import useData from "../hooks/useData";
+import useData from "../hooks/useNewsQuery";
 
 const NavItems = () => {
   const { setCategory } = useData();
